@@ -1,8 +1,6 @@
 
-
-/*
- DiacriticObliterator
- ====================
+DiacriticObliterator
+====================
  
  DiacriticObliterator by Golan Levin, May 2014
  A processing project which clobbers text files to 7-bit ASCII.
@@ -18,7 +16,9 @@
  For an input file called myInput.csv, the DiacriticObliterator will produce three output files in the same directory:
  
  myInput-CORRECTED.csv  -- the cleaned-up output file.
+ 
  myInput-CHANGES.csv  -- list of changes that were made.
+ 
  myInput-UNFIXABLE.csv  -- a list of rows that could not be fixed. 
- */
+
 
