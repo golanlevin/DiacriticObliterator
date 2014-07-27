@@ -19,6 +19,7 @@
  myInput-CORRECTED.csv  -- the cleaned-up output file.
  myInput-CHANGES.csv  -- list of changes that were made.
  myInput-UNFIXABLE.csv  -- a list of rows that could not be fixed. 
+ 
  */
 
 
@@ -36,6 +37,8 @@ Table correctionsTable;
 StringDict correctionsDict; 
 boolean bDidIt; 
 
+String aTestString = "Castello, 91 Â· 2o. D";
+
 
 //=========================================
 void setup() {
@@ -44,6 +47,9 @@ void setup() {
 
   // Load the dictionary of replacement characters. 
   createReplacementDictionary();
+
+  String aCorrectedTestString = replaceProblematicCharactersInString (aTestString);
+  println (aTestString + "\t" + aCorrectedTestString); 
 
   // Pop up an "Open File" dialog window. 
   // The user should select the spreadsheet they wish to process. 
@@ -141,7 +147,7 @@ void setup() {
 void createReplacementDictionary() {
   correctionsTable = loadTable("mappings.tsv", "header");
   correctionsDict = new StringDict();
-  for (TableRow row : correctionsTable.rows()) {
+  for (TableRow row : correctionsTable.rows ()) {
     String inStr  = row.getString("IN");
     String outStr = row.getString("OUT");
     correctionsDict.set(inStr, outStr);
@@ -153,7 +159,7 @@ String replaceProblematicCharactersInString (String aString) {
 
   boolean bMadeReplacement = false;
   if (aString.length() > 0) {
-    for (int j=0; j<(aString.length()); j++) {
+    for (int j=0; j< (aString.length ()); j++) {
       char aChar = aString.charAt(j); 
       String charStr = "" + aChar; 
 
@@ -204,7 +210,7 @@ String replaceProblematicCharacterPairInString (String aString) {
 
   boolean bMadeReplacement = false;
   if (aString.length() > 1) {
-    for (int j=0; j<(aString.length()-1); j++) {
+    for (int j=0; j< (aString.length ()-1); j++) {
       char charj0 = aString.charAt(j  ); 
       char charj1 = aString.charAt(j+1);
       String charPairStr = "" + charj0 + charj1; 
@@ -225,7 +231,7 @@ String replaceProblematicCharacterPairInString (String aString) {
 boolean containsUnusualChar (String aString) {
 
   boolean bOut = false; 
-  for (int i=0; i< aString.length(); i++) {
+  for (int i=0; i< aString.length (); i++) {
     char aChar = aString.charAt(i); 
     if (((int)aChar) > 127) {
       bOut = true;
